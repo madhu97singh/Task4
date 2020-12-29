@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!-- <h1>Book Finder</h1>
+	<input type="text" id="search" placeholder="Title or author" name="">
+	<button id="button" type="button">Click me</button>
+	<div id="result"></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+	<script type="text/javascript">
+		function bookSearch(){
+				var search = document.getElementById('search').value
+				document.getElementById('result').innerHTML = ""
+				console.log(search)
+				$.ajax({
+					url : "https://www.googleapis.com/books/v1/volumes?q=" + search,
+					dataType : "json",
+				
+					success:function(data){
+						console.log(data)
+					},
+					type : 'GET'
+				});
+			}
+			document.getElementById('button').addEventListener('click',bookSearch,false)
+	</script> -->
+
+
+
+	 	<h1>Find Code Books</h1>
+	    <input type="search" name="" id="search" placeholder="Title or Author" value="">
+	    <button id="button">Search</button>
+	    <div id="result"></div>
+		<script type="text/javascript">
+			function booksearch(){
+	         var search=document.getElementById('search').value;    
+	          $.ajax({
+				  method: "GET",
+				  url: "https://www.googleapis.com/books/v1/volumes",
+				  data: { q: search }
+				})
+	  				.done(function( bookdata ) {
+	   				for(var i=0;i<bookdata.items.length;i++){
+						result.innerHTML +="<div><ul><li><h5>"+bookdata.items[i].volumeInfo.title + "</h5></li>"+"<li>"+bookdata.items[i].volumeInfo.publisher +"</li>"+"<li>"+bookdata.items[i].volumeInfo.authors +"</li>"+"<li><img src='+bookdata.items[i].imageLinks.thumbnail +'></li></ul></div>";
+	   			}
+	  		});
+	        
+	     }
+     		document.getElementById('button').addEventListener('click',booksearch,false);
+    	</script>
+</body>
+</html>
